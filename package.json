@@ -6,24 +6,39 @@
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
+    "typecheck": "tsc --noEmit",
+    "lint": "prettier --check ./app && eslint --cache ./app",
+    "lint:fix": "prettier --write ./app && eslint --cache --fix ./app",
     "postinstall": "remix setup node",
-    "start": "remix-serve build"
+    "start": "remix-serve build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@remix-run/react": "^1.1.3",
+    "@remix-run/serve": "^1.1.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "remix": "^1.1.3",
-    "@remix-run/serve": "^1.1.3"
+    "remix": "^1.1.3"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.1.3",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.11.0",
+    "@typescript-eslint/parser": "^5.11.0",
+    "eslint": "^8.9.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "husky": ">=6",
+    "lint-staged": ">=10",
+    "prettier": "^2.5.1",
     "typescript": "^4.1.2"
   },
   "engines": {
     "node": ">=14"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "lint-staged": {
+    "**/*.ts?(x)": "yarn lint"
+  }
 }
